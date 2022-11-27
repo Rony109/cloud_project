@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="alert alert-{{msgcolor}}" role="alert">
+  {{msg}}
+</div>
+<div class="container my-5">
+	<div class="row justify-content-center align-items-center">
+		<div class="col-8 col-md-6 ">
+			<div class="card">
+				<div class="card-body">
+					<h2 class="card-title text-center">Register Employee</h2>
+
+					<form id="empform" autocomplete="off" name="myForm" action=# method="post">
+						<div class="form-group">
+							<input type="number" name="id" id='empid' class="form-control my-3" placeholder="Employee ID" required="">
+							<input type="text" name="name" id='name' class="form-control my-3" placeholder="Employee Name" pattern="[a-z A-Z]*" required="">
+							<input type="text" name="address" id='address' class="form-control my-3" placeholder="Employee Address">
+							<input type="date" name="dob" id="dob" class="form-control my-3" placeholder="DOB" required="">
+							<input type="number" id="phone" name="phone" class="form-control my-3" placeholder="Employee Contact Number" required="">
+							<button type="submit" class="btn btn-block btn-success">Submit</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="{{url_for('static',filename='js/app.js')}}"></script>
+{% endblock %}
