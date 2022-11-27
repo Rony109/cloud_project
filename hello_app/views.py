@@ -5,7 +5,7 @@ import mysql.connector
 
 @app.route("/")
 def home():
-	return render_template('index.html')
+	return render_template('templates/index.html')
 
 @app.route("/Register", methods = ['POST','GET'])
 def register():
@@ -36,7 +36,7 @@ def register():
 			msg = 'The Entry is already present!! \n or you have exceeded the data limit in a feild.'
 	conn.close()
 		
-	return render_template('Registeremployee.html',msg = msg,msgcolor=msgcolor)
+	return render_template('templates/Registeremployee.html',msg = msg,msgcolor=msgcolor)
 
 @app.route("/Update", methods =["POST","GET"])
 @app.route("/Update/<string>", methods =["POST","GET"])
@@ -71,9 +71,9 @@ def update(string=""):
 			msg = 'Some error occured! Unable to update the details'
 			msgcolor='danger'
 	
-			return render_template('Updateemployee.html',posts = result,msg = 'danger')
+			return render_template('templates/Updateemployee.html',posts = result,msg = 'danger')
 	print('Record updated successfully...')  
-	return render_template('Updateemployee.html',posts = result,msg =msg, msgcolor=msgcolor)
+	return render_template('templates/Updateemployee.html',posts = result,msg =msg, msgcolor=msgcolor)
 
 
 @app.route("/View", methods=['POST','GET'])
@@ -117,7 +117,7 @@ def view():
 				
 
 			print("ID found is :",result1)
-			return render_template('Viewemployee.html', results = result,count=count,SearchResults =result1, display = True,msg=msg,msgcolor=msgcolor)
+			return render_template('templates/Viewemployee.html', results = result,count=count,SearchResults =result1, display = True,msg=msg,msgcolor=msgcolor)
 		
 		elif category.lower() == 'age':
 			print("in search category age")
@@ -134,7 +134,7 @@ def view():
 				msg = 'No Match Found!!!'
 				msgcolor='danger'
 			
-			return render_template('Viewemployee.html',count=count, results = result,SearchResults =result1, display = True,msg=msg,msgcolor=msgcolor)
+			return render_template('templates/Viewemployee.html',count=count, results = result,SearchResults =result1, display = True,msg=msg,msgcolor=msgcolor)
 		
 		elif category.lower() == 'letter':
 			print("in search category letter")
@@ -153,13 +153,13 @@ def view():
 				msgcolor='danger'
 			
 			print('Result is here :',result1)
-			return render_template('Viewemployee.html',count=count, results = result,SearchResults =result1, display = True,msg=msg,msgcolor=msgcolor)
+			return render_template('templates/Viewemployee.html',count=count, results = result,SearchResults =result1, display = True,msg=msg,msgcolor=msgcolor)
 		else:
 			msg = 'No match found!!!'
 			msgcolor='danger'
-			return render_template('Viewemployee.html',count=count, results = result,SearchResults =result1, display = True)
+			return render_template('templates/Viewemployee.html',count=count, results = result,SearchResults =result1, display = True)
 	conn.close()
-	return render_template('Viewemployee.html', results = result,SearchResults =result1,count=count, display = False)
+	return render_template('templates/Viewemployee.html', results = result,SearchResults =result1,count=count, display = False)
 	
 
 @app.route("/Delete", methods=['POST','GET'])
@@ -201,5 +201,5 @@ def delete():
 			msg = 'An Error Occured!!!.'
 			msgcolor = 'danger'
 		conn.close()
-	return render_template('Deleteemployee.html',msg=msg,msgcolor=msgcolor)
+	return render_template('templates/Deleteemployee.html',msg=msg,msgcolor=msgcolor)
 
